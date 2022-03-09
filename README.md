@@ -4,7 +4,7 @@
 The plot of this program is to mimic a simple calculator with the standard functions that include adding, subtracting, dividing, and multiplying.
 This calculator should be able to store user input and continue calculations until a new set of operations is initiated or if the calculator is 'cleared'.
 
-### 'plan of attack' & 'todo checklist'
+### plan of attack 
 - built the UI skeleton with html with all the appropriate sections and buttons in their place
 - create functions for operators add, sub, div, and multi
   - this will be outputted to the console inititally, then implemented into UI 
@@ -29,6 +29,3 @@ This calculator should be able to store user input and continue calculations unt
     + Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
     + Display a snarky error message if the user tries to divide by 0… don’t let it crash your calculator!
 
-
-[] check one
-[x] check two
