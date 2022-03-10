@@ -8,13 +8,13 @@ This calculator should be able to store user input and continue calculations unt
 - [&check;] built the UI skeleton with html with all the appropriate sections and buttons in their place 
 - [&check;] create functions for operators add, sub, div, and multi
   - [&cross;] this will be outputted to the console inititally, then implemented into UI 
-- [_] create a function operate() that takes an operator and 2 numbers and then calls one of the functions(add, sub, div, mult). 
-- [_] UI of calculator should have
+- [&check;] create a function operate() that takes an operator and 2 numbers and then calls one of the functions(add, sub, div, mult). 
+- [&check;] UI of calculator should have
   - a clear button
   - buttons for each digit
   - buttons for each of the 4 operator functions
   - button for the 'equals' key
-- [_] create a function thatt displays and populates when numbers are clicked
+- [&check;] create a function that displays and populates when numbers are clicked
   - values should be stored somewhere
 - [_] make calculator work! store first number that is input into the calc when user presses an operator. ALSO save when operation has been chosen and thenn operate() on them when user pressese the '=' key
   - code should already populate the display, so once operate() is invoked, update the display with the solution to the operation
