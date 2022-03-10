@@ -4,7 +4,10 @@ let tempNumber = ''; //actually a string!
 let input = document.querySelector('.input');
 let inputHistory = document.querySelector('.inputHistory');
 
+// equals button
 document.querySelector('.equals').addEventListener('click', calculateHistory);
+// reset button
+document.querySelector('.reset').addEventListener('click', begone);
 
 //operators
 function add(a, b) {
@@ -19,6 +22,12 @@ function sub(a, b) {
 
 function div(a, b) {
   console.log('ayo from div');
+  if(b === 0) {
+    console.log('badbadnogood')
+    begone();
+    alert('bug off');
+    return 0;
+  }
   return a / b;
 }
 
@@ -61,13 +70,12 @@ function calculateHistory() {
     operator = storedInput[i];
     operand2 = +storedInput[i + 1];
     console.log(`operand1: ${operand1}; operand2: ${operand2}; operator: ${operator}`);
-    console.log(`operate() returns: ${operate(operand1, operator, operand2)}`);
+    //console.log(`operate() returns: ${operate(operand1, operator, operand2)}`);
     operand1 = operate(operand1, operator, operand2);
   }
   console.log(`operand1's value is ${operand1}`);
 
   //output and store as first storedInput element
-
   inputHistory.textContent = '';
   input.textContent = `${operand1}`;
   tempNumber = '';
@@ -102,8 +110,6 @@ for (let key of keys) {
   key.addEventListener('click', getValue);
 }
 
-// reset button
-document.querySelector('.reset').addEventListener('click', begone)
 
 function begone() {
   tempNumber = '';

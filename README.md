@@ -16,7 +16,7 @@ This calculator should be able to store user input and continue calculations unt
   - button for the 'equals' key
 - [&check;] create a function that displays and populates when numbers are clicked
   - values should be stored somewhere
-- [_] make calculator work! store first number that is input into the calc when user presses an operator. ALSO save when operation has been chosen and thenn operate() on them when user pressese the '=' key
+- [&check;] make calculator work! store first number that is input into the calc when user presses an operator. ALSO save when operation has been chosen and thenn operate() on them when user pressese the '=' key
   - code should already populate the display, so once operate() is invoked, update the display with the solution to the operation
   - (hard) figure out how to store all the values and call operate() with them
 
@@ -27,5 +27,5 @@ This calculator should be able to store user input and continue calculations unt
     + You should round answers with long decimals so that they don’t overflow the screen.
     + Pressing = before entering all of the numbers or an operator could cause problems!
     + Pressing “clear” should wipe out any existing data.. make sure the user is really starting fresh after pressing “clear”
-    + Display a snarky error message if the user tries to divide by 0… don’t let it crash your calculator!
+    + [&check;] Display a snarky error message if the user tries to divide by 0… don’t let it crash your calculator!
 
