@@ -7,7 +7,7 @@ This calculator should be able to store user input and continue calculations unt
 ### plan of attack 
 - [&check;] built the UI skeleton with html with all the appropriate sections and buttons in their place 
 - [&check;] create functions for operators add, sub, div, and multi
-  - [&cross;] this will be outputted to the console inititally, then implemented into UI 
+  - [&check;] this will be outputted to the console inititally, then implemented into UI 
 - [&check;] create a function operate() that takes an operator and 2 numbers and then calls one of the functions(add, sub, div, mult). 
 - [&check;] UI of calculator should have
   - a clear button

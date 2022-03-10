@@ -1,5 +1,6 @@
 let storedInput = [];
 let tempNumber = ''; //actually a string!
+let operatorList = ['+', '-', '/', '*'];
 
 let input = document.querySelector('.input');
 let inputHistory = document.querySelector('.inputHistory');
@@ -22,7 +23,7 @@ function sub(a, b) {
 
 function div(a, b) {
   console.log('ayo from div');
-  if(b === 0) {
+  if (b === 0) {
     console.log('badbadnogood')
     begone();
     alert('bug off');
@@ -70,7 +71,7 @@ function calculateHistory() {
     operator = storedInput[i];
     operand2 = +storedInput[i + 1];
     console.log(`operand1: ${operand1}; operand2: ${operand2}; operator: ${operator}`);
-    //console.log(`operate() returns: ${operate(operand1, operator, operand2)}`);
+    //3console.log(`operate() returns: ${operate(operand1, operator, operand2)}`);
     operand1 = operate(operand1, operator, operand2);
   }
   console.log(`operand1's value is ${operand1}`);
@@ -93,6 +94,7 @@ function storeInput(value) {
     if (tempNumber !== '') {
       storedInput.push(tempNumber);
     }
+    checkConsecutiveOperators(value);
     storedInput.push(value);
     tempNumber = '';
     inputHistory.textContent = storedInput.join(' ');
@@ -116,4 +118,12 @@ function begone() {
   storedInput = [];
   input.textContent = '';
   inputHistory.textContent = '';
+}
+
+function checkConsecutiveOperators(value) {
+  for (let op of operatorList) {
+    if(op === storedInput[storedInput.length - 1]) {
+      storedInput.pop();
+    }
+  }
 }
