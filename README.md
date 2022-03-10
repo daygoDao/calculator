@@ -5,18 +5,18 @@ The plot of this program is to mimic a simple calculator with the standard funct
 This calculator should be able to store user input and continue calculations until a new set of operations is initiated or if the calculator is 'cleared'.
 
 ### plan of attack 
-- built the UI skeleton with html with all the appropriate sections and buttons in their place
-- create functions for operators add, sub, div, and multi
+- [&check;] built the UI skeleton with html with all the appropriate sections and buttons in their place 
+- [_] create functions for operators add, sub, div, and multi
   - this will be outputted to the console inititally, then implemented into UI 
-- create a function operate() that takes an operator and 2 numbers and then calls one of the functions(add, sub, div, mult). 
-- UI of calculator should have
+- [_] create a function operate() that takes an operator and 2 numbers and then calls one of the functions(add, sub, div, mult). 
+- [_] UI of calculator should have
   - a clear button
   - buttons for each digit
   - buttons for each of the 4 operator functions
   - button for the 'equals' key
-- create a function thatt displays and populates when numbers are clicked
+- [_] create a function thatt displays and populates when numbers are clicked
   - values should be stored somewhere
-- make calculator work! store first number that is input into the calc when user presses an operator. ALSO save when operation has been chosen and thenn operate() on them when user pressese the '=' key
+- [_] make calculator work! store first number that is input into the calc when user presses an operator. ALSO save when operation has been chosen and thenn operate() on them when user pressese the '=' key
   - code should already populate the display, so once operate() is invoked, update the display with the solution to the operation
   - (hard) figure out how to store all the values and call operate() with them
 
