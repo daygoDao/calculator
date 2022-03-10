@@ -4,6 +4,8 @@ let tempNumber = ''; //actually a string!
 let input = document.querySelector('.input');
 let inputHistory = document.querySelector('.inputHistory');
 
+document.querySelector('.equals').addEventListener('click', calculateHistory);
+
 //operators
 function add(a, b) {
   console.log('ayo from add');
@@ -30,7 +32,7 @@ function operate(operand1, operator, operand2) {
   if (operator === '+') {
     return add(operand1, operand2);
   } else if (operator === '-') {
-    return console.log(sub(operand1, operand2));
+    return sub(operand1, operand2);
   } else if (operator === '/') {
     return div(operand1, operand2);
   } else if (operator === '*') {
@@ -42,22 +44,34 @@ function operate(operand1, operator, operand2) {
  * Returns the total of all storedInput with the help of operate()
  * 
  * @param: none
- * @return {number} total value    
+ * @return: none   
  */
 function calculateHistory() {
+  //take recent input and  add to storedInput array to calculate!  
+  if (tempNumber !== '') {
+    console.log(tempNumber)
+    storedInput.push(tempNumber);
+  }
   //let total = 0;
   let operand1 = +storedInput[0];
   let operand2 = 0;
   let operator = '';
   //console.log(storedInput.length);
   for (let i = 1; i < storedInput.length - 1; i += 2) {
-    console.log(operand1)
     operator = storedInput[i];
     operand2 = +storedInput[i + 1];
-
     console.log(`operand1: ${operand1}; operand2: ${operand2}; operator: ${operator}`);
-    operand1 += operate(operand1, operator, operand2);
+    console.log(`operate() returns: ${operate(operand1, operator, operand2)}`);
+    operand1 = operate(operand1, operator, operand2);
   }
+  console.log(`operand1's value is ${operand1}`);
+
+  //output and store as first storedInput element
+
+  inputHistory.textContent = '';
+  input.textContent = `${operand1}`;
+  tempNumber = '';
+  storedInput = [operand1];
 }
 
 function getValue(e) {
@@ -66,14 +80,11 @@ function getValue(e) {
 }
 
 function storeInput(value) {
-  // when '=' is clicked
-  if (value === '=') {
-    storedInput.push(tempNumber);
-    calculateHistory();
-  }
   //check if value is part of a number or an operator
   if (value === '+' || value === '-' || value === '/' || value === '*') {
-    storedInput.push(tempNumber);
+    if (tempNumber !== '') {
+      storedInput.push(tempNumber);
+    }
     storedInput.push(value);
     tempNumber = '';
     inputHistory.textContent = storedInput.join(' ');
