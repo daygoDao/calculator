@@ -48,7 +48,7 @@ function div(a, b) {
     alert('bug off');
     return 0;
   }
-  return a / b;
+  return (a / b).toFixed(2);
 }
 
 /**
@@ -58,7 +58,7 @@ function div(a, b) {
  * @returns {number} multiplication of a and b 
  */
 function mult(a, b) {
-  return a * b;
+  return (a * b).toFixed(2);
 }
 
 /**
