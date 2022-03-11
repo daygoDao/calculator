@@ -57,15 +57,30 @@ function operate(operand1, operator, operand2) {
  * @return: none   
  */
 function calculateHistory() {
-  //take recent input and  add to storedInput array to calculate!  
-  if (tempNumber !== '') {
-    console.log(tempNumber)
-    storedInput.push(tempNumber);
-  }
-  //let total = 0;
   let operand1 = +storedInput[0];
   let operand2 = 0;
   let operator = '';
+
+  //take recent input and  add to storedInput array to calculate!  
+  if (tempNumber !== '') {
+    console.log(`tempNumber to be pushed into storedInput ${tempNumber}`)
+    storedInput.push(tempNumber);
+  }
+  // if only 1 element within stored array we will display and store the value
+  if (storedInput.length === 1) {
+    console.log('one element only!');
+    inputHistory.textContent = '';
+    input.textContent = `${storedInput[0]}`;
+    tempNumber = '';
+    storedInput = [storedInput[0]];
+    return '';
+  }
+  //check if history is empty and if an operator was the most recent input
+  if (checkEmptyHistory()) {
+    return '';
+  }
+
+  // do math
   //console.log(storedInput.length);
   for (let i = 1; i < storedInput.length - 1; i += 2) {
     operator = storedInput[i];
@@ -78,13 +93,27 @@ function calculateHistory() {
 
   //output and store as first storedInput element
   inputHistory.textContent = '';
-  input.textContent = `${operand1}`;
   tempNumber = '';
+  input.textContent = `${operand1}`;
   storedInput = [operand1];
 }
 
 function getValue(e) {
   //console.log(e.target.value);
+  //checks if there is only 1 element in the storedInput and its value is 0
+  if (storedInput[0] === 0 && storedInput.length === 1) {
+    console.log('funk you');
+    storedInput.pop();
+  }
+
+  //check if the first value is an operator which, if so, will not register
+  for (let op of operatorList) {
+    if (storedInput.length === 0 && op === e.target.value && tempNumber == '') {
+      alert('dont start with an operator :(');
+      return '';
+    }
+  }
+
   storeInput(e.target.value);
 }
 
@@ -122,8 +151,18 @@ function begone() {
 
 function checkConsecutiveOperators(value) {
   for (let op of operatorList) {
-    if(op === storedInput[storedInput.length - 1]) {
+    if (op === storedInput[storedInput.length - 1]) {
       storedInput.pop();
     }
   }
+}
+
+function checkEmptyHistory() {
+  console.log(`storedInput.length: ${storedInput.length}`)
+  if (storedInput.length === 0) {
+    alert('empty history');
+    begone();
+    return true;
+  }
+  return false;
 }
