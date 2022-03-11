@@ -143,6 +143,16 @@ function getValue(e) {
     storedInput.pop();
   }
 
+  //if the first and only element of storedInput is from the a prior calculation and
+  //the user enters a new number to start a fresh input history
+  if(storedInput.length === 1 && tempNumber === '' && typeof storedInput[0] === 'number') {
+    if (e.target.value !== '*' && e.target.value !== '/' && e.target.value !== '+' && e.target.value !== '-') {
+      console.log('lets start a newnew');
+      storedInput.pop();
+    }
+    
+  }
+
   //check if the first value is an operator which, if so, will not register
   for (let op of operatorList) {
     if (storedInput.length === 0 && op === e.target.value && tempNumber == '') {
