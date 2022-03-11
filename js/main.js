@@ -5,26 +5,45 @@ let operatorList = ['+', '-', '/', '*'];
 let input = document.querySelector('.input');
 let inputHistory = document.querySelector('.inputHistory');
 
+// numbers and operators button
+const keys = document.querySelectorAll('.keys');
+for (let key of keys) {
+  key.addEventListener('click', getValue);
+}
+
 // equals button
 document.querySelector('.equals').addEventListener('click', calculateHistory);
 // reset button
 document.querySelector('.reset').addEventListener('click', begone);
 
-//operators
+/**
+ * Simple add and return results 
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number} sum of a and b 
+ */
 function add(a, b) {
-  console.log('ayo from add');
   return a + b;
 }
 
+/**
+ * Simple subtraction and return results 
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number} difference of a and b 
+ */
 function sub(a, b) {
-  console.log('ayo from sub');
   return a - b;
 }
 
+/**
+ * Simple divide and return results 
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number} division of a and b 
+ */
 function div(a, b) {
-  console.log('ayo from div');
   if (b === 0) {
-    console.log('badbadnogood')
     begone();
     alert('bug off');
     return 0;
@@ -32,13 +51,25 @@ function div(a, b) {
   return a / b;
 }
 
+/**
+ * Simple multiply and return results 
+ * @param {number} a 
+ * @param {number} b 
+ * @returns {number} multiplication of a and b 
+ */
 function mult(a, b) {
-  console.log('ayo from mult');
   return a * b;
 }
 
+/**
+ * operate() will figure out the type of operator is used and 
+ * invoke the appropiate functions to do the math! 
+ * @param {number} operand1 
+ * @param {string} operator 
+ * @param {number} operand2 
+ * @returns 
+ */
 function operate(operand1, operator, operand2) {
-  //console.log(arguments[0], arguments[1], arguments[2]);
   if (operator === '+') {
     return add(operand1, operand2);
   } else if (operator === '-') {
@@ -53,8 +84,7 @@ function operate(operand1, operator, operand2) {
 /**
  * Returns the total of all storedInput with the help of operate()
  * 
- * @param: none
- * @return: none   
+ * @returns 
  */
 function calculateHistory() {
   let operand1 = +storedInput[0];
@@ -98,6 +128,13 @@ function calculateHistory() {
   storedInput = [operand1];
 }
 
+/**
+ * getValue is called when a number key is clicked and if the value 
+ * is valid, storeInput will be invoked to store/record the input!
+ * 
+ * @param {*} e 
+ * @returns {string} '' if value is invalid
+ */
 function getValue(e) {
   //console.log(e.target.value);
   //checks if there is only 1 element in the storedInput and its value is 0
@@ -113,10 +150,15 @@ function getValue(e) {
       return '';
     }
   }
-
   storeInput(e.target.value);
 }
 
+/**
+ * storeInput will display to the user their input aswell as the history
+ * of the current storedInput
+ * 
+ * @param {*} value 
+ */
 function storeInput(value) {
   //check if value is part of a number or an operator
   if (value === '+' || value === '-' || value === '/' || value === '*') {
@@ -132,16 +174,12 @@ function storeInput(value) {
     tempNumber += value;
     input.textContent = tempNumber;
   }
-  //storedInput.push(value);
-  //console.log(tempNumber);
 }
 
-const keys = document.querySelectorAll('.keys');
-for (let key of keys) {
-  key.addEventListener('click', getValue);
-}
-
-
+/**
+ * begone() will reset the storedInput array, tempNumber value, the 
+ * UI display of the input and the current inputs to be calculated
+ */
 function begone() {
   tempNumber = '';
   storedInput = [];
@@ -149,6 +187,13 @@ function begone() {
   inputHistory.textContent = '';
 }
 
+/**
+ * checkConsecutiveOperators() will check if two operands are entered 
+ * back to back and makes sure the oldest operator is discarded for the
+ * new operator to be utilzed.
+ *  
+ * @param {*} value 
+ */
 function checkConsecutiveOperators(value) {
   for (let op of operatorList) {
     if (op === storedInput[storedInput.length - 1]) {
@@ -157,6 +202,12 @@ function checkConsecutiveOperators(value) {
   }
 }
 
+/**
+ * checkEmptyHistory() will check when the '=' button is pressed and
+ * if storedInput is empty it will help calculate() kick out
+ * 
+ * @returns {boolean} true if storedInpu is empty, false otherwise
+ */
 function checkEmptyHistory() {
   console.log(`storedInput.length: ${storedInput.length}`)
   if (storedInput.length === 0) {
